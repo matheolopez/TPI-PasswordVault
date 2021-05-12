@@ -16,5 +16,24 @@ namespace PasswordVault
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            foreach (Account account in SQLiteDataAccess.LoadAccounts())
+            {
+                listView1.Items.Add(account.ID);
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listView1.Clear();
+            SQLiteDataAccess.DeleteAccount(SQLiteDataAccess.LoadAccounts()[0]);
+            foreach (Account account in SQLiteDataAccess.LoadAccounts())
+            {
+                listView1.Items.Add(account.ID);
+            }
+        }
     }
 }
