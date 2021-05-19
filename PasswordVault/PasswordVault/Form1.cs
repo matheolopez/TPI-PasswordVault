@@ -21,7 +21,8 @@ namespace PasswordVault
         {
             foreach (Account account in SQLiteDataAccess.LoadAccounts())
             {
-                listView1.Items.Add(account.ID);
+                listView1.Items.Add(account.ID.ToString());
+                listView1.Items.Add(account.Title);
             }
             
         }
@@ -29,10 +30,12 @@ namespace PasswordVault
         private void button1_Click(object sender, EventArgs e)
         {
             listView1.Clear();
-            SQLiteDataAccess.DeleteAccount(SQLiteDataAccess.LoadAccounts()[0]);
+            //SQLiteDataAccess.ModifyAccount(new Account(2, "Test1", "Test1", "Test1", "", 0));
+            SQLiteDataAccess.ModifyAccount(new Account(9, "Test3", "Test3", "Test3", "Test3", 1));
             foreach (Account account in SQLiteDataAccess.LoadAccounts())
             {
-                listView1.Items.Add(account.ID);
+                listView1.Items.Add(account.ID.ToString());
+                listView1.Items.Add(account.Title);
             }
         }
     }
