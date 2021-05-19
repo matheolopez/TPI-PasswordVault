@@ -40,9 +40,9 @@ namespace PasswordVault
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.Location = new System.Drawing.Point(27, 22);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(90, 16);
+            this.lblPassword.Size = new System.Drawing.Size(68, 16);
             this.lblPassword.TabIndex = 0;
-            this.lblPassword.Text = "Mot de passe";
+            this.lblPassword.Text = "Password";
             // 
             // txtBoxPassword
             // 
@@ -58,7 +58,7 @@ namespace PasswordVault
             this.btnConnection.Name = "btnConnection";
             this.btnConnection.Size = new System.Drawing.Size(157, 23);
             this.btnConnection.TabIndex = 2;
-            this.btnConnection.Text = "Se connecter";
+            this.btnConnection.Text = "Connect";
             this.btnConnection.UseVisualStyleBackColor = true;
             this.btnConnection.Click += new System.EventHandler(this.btnConnection_Click);
             // 

@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PasswordVault
+{
+    public partial class UsrCtrlAccount : UserControl
+    {
+        Account account;
+
+        public UsrCtrlAccount(Account account)
+        {
+            InitializeComponent();
+            this.account = account;
+        }
+
+        private void UsrCtrlAccount_Load(object sender, EventArgs e)
+        {
+            lblTitle.Text = account.Title;
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCopyUsername_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(account.Login);
+        }
+
+        private void btnCopyPassword_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(account.Password);
+        }
+
+        private async void ClearClipboard()
+        {
+            Task.Delay(15000).Wait();
+            Clipboard.Clear();
+        }
+    }
+}

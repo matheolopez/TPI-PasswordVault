@@ -27,13 +27,13 @@ namespace PasswordVault
             if (CryptClass.Login(txtBoxPassword.Text))
             {
                 this.Hide();
-                Form1 form1 = new Form1();
-                form1.ShowDialog();
+                FormMain formMain = new FormMain();
+                formMain.ShowDialog();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Mauvais mot de passe !");
+                MessageBox.Show("Wrong password!");
                 txtBoxPassword.Focus();
             }
         }
