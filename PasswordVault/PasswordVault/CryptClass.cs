@@ -7,8 +7,8 @@ namespace PasswordVault
 {
     public static class CryptClass
     {
-        private static string strKey = "l+Ayx12DPDHopitXD4VTfQ=="; // Encryption key
-        private static string strIv = "+4n3xhu3sr4BO6fU0PKrGg=="; // Initialisation vector
+        private static string strKey = "nT9EcymsFFtAPnhG7YOyBO8f3U3AKJnqTEv5sqhan0Y="; // Encryption key
+        private static string strIv = "ArJykA1WJwsmWcgWl389tg=="; // Initialisation vector
         private static string passwordHashed = "436D6F2548D591A8D1EF477CDB51274D46E4555103C489BE5E8CA517638E083B"; // Hashed password of the app
 
         /// <summary>
@@ -18,79 +18,46 @@ namespace PasswordVault
         /// <returns>Encrypted text</returns>
         public static string EncryptString(string clearText)
         {
-            // Converts text to bytes
-            byte[] plainText = Encoding.UTF8.GetBytes(clearText);
+            byte[] encArray;
+            RijndaelManaged algo = new RijndaelManaged();
+            algo.Key = Convert.FromBase64String(strKey);
+            algo.IV = Convert.FromBase64String(strIv);
+            ICryptoTransform encryptor = algo.CreateEncryptor(algo.Key, algo.IV);
+            MemoryStream msEncrypt = new MemoryStream();
+            CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write);
 
-            // Converts key string to bytes
-            byte[] key = Encoding.UTF8.GetBytes(strKey);
+            using (StreamWriter Encrypt = new StreamWriter(csEncrypt))
+            {
+                Encrypt.Write(clearText);
+            }
+            encArray = msEncrypt.ToArray();
 
-            // Converts iv string to bytes
-            byte[] iv = Encoding.UTF8.GetBytes(strIv);
-
-
-            RijndaelManaged rijndael = new RijndaelManaged();
-
-            // Defines the used mode
-            rijndael.Mode = CipherMode.CBC;
-
-            // Creates the AES - Rijndael encryptor
-            ICryptoTransform aesEncryptor = rijndael.CreateEncryptor(key, iv);
-
-            MemoryStream ms = new MemoryStream();
-
-            // Writes encrypted data in MemoryStream
-            CryptoStream cs = new CryptoStream(ms, aesEncryptor, CryptoStreamMode.Write);
-            cs.Write(plainText, 0, plainText.Length);
-            cs.FlushFinalBlock();
-
-
-            // Converts encrypted data to an array
-            byte[] CipherBytes = ms.ToArray();
-
-
-            ms.Close();
-            cs.Close();
-
-            // Convert encrypted data to string
-            return Convert.ToBase64String(CipherBytes);
+            return Convert.ToBase64String(encArray);
         }
 
         /// <summary>
         /// Decrypts the data with the rijndael algorithm
         /// </summary>
-        /// <param name="cipherText">Text to decrypt</param>
+        /// <param name="cryptedText">Text to decrypt</param>
         /// <returns>Decrypted text</returns>
-        public static string DecryptString(string cipherText)
+        public static string DecryptString(string cryptedText)
         {
-            // Converts text to bytes
-            byte[] cipheredData = Convert.FromBase64String(cipherText);
+            byte[] cryptedbytes = Convert.FromBase64String(cryptedText);
+            string plaintext = null;
+            RijndaelManaged algo = new RijndaelManaged();
 
-            // Converts key string to bytes
-            byte[] key = Encoding.UTF8.GetBytes(strKey);
+            algo.Key = Convert.FromBase64String(strKey);
+            algo.IV = Convert.FromBase64String(strIv);
+            ICryptoTransform decryptor = algo.CreateDecryptor(algo.Key, algo.IV);
+            MemoryStream msDecrypt = new MemoryStream(cryptedbytes);
 
-            // Converts iv string to bytes
-            byte[] iv = Encoding.UTF8.GetBytes(strIv);
+            CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read);
 
-            RijndaelManaged rijndael = new RijndaelManaged();
-            rijndael.Mode = CipherMode.CBC;
-
-
-            // Writes decrypted data in MemoryStream
-            ICryptoTransform decryptor = rijndael.CreateDecryptor(key, iv);
-            MemoryStream ms = new MemoryStream(cipheredData);
-            CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
-
-            // Converts decrypted data to an array
-            byte[] plainTextData = new byte[cipheredData.Length];
-
-            int decryptedByteCount = cs.Read(plainTextData, 0, plainTextData.Length);
-
-
-            ms.Close();
-            cs.Close();
-
-            // Returns the decrypted data as a string
-            return Encoding.UTF8.GetString(plainTextData, 0, decryptedByteCount);
+            using (StreamReader Decrypt = new StreamReader(csDecrypt))
+            {
+                plaintext = Decrypt.ReadToEnd();
+            }
+            return plaintext;
         }
 
         /// <summary>
