@@ -15,7 +15,7 @@ namespace PasswordVault
         /// <returns>List of accounts</returns>
         public static List<Account> LoadAccounts()
         {
-            // Open an SQLite connexion
+            // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 // ToDo: Decrypt data
@@ -30,7 +30,7 @@ namespace PasswordVault
         /// <param name="account">Account to add in the database</param>
         public static void AddAccount(Account account)
         {
-            // Open an SQLite connexion
+            // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 // ToDo: Encrypt data
@@ -46,7 +46,7 @@ namespace PasswordVault
         /// <param name="account">Modified account to update</param>
         public static void ModifyAccount(Account account)
         {
-            // Open an SQLite connexion
+            // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 // Get old data from account
@@ -82,7 +82,7 @@ namespace PasswordVault
         /// <param name="account">Account to delete</param>
         public static void DeleteAccount(Account account)
         {
-            // Open an SQLite connexion
+            // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<History>("SELECT * FROM t_history WHERE fkAccount = " + account.ID, new DynamicParameters());
@@ -97,10 +97,10 @@ namespace PasswordVault
         }
 
         /// <summary>
-        /// Gets connexion string for the SQLite connexion
+        /// Gets connection string for the SQLite connection
         /// </summary>
-        /// <param name="id">ID of the connexion string to get (Default id is "Default")</param>
-        /// <returns>String connexion</returns>
+        /// <param name="id">ID of the connection string to get (Default id is "Default")</param>
+        /// <returns>String connection</returns>
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
