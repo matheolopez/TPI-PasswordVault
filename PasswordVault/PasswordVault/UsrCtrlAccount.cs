@@ -12,11 +12,13 @@ namespace PasswordVault
 {
     public partial class UsrCtrlAccount : UserControl
     {
+        FormMain formMain;
         Account account;
 
-        public UsrCtrlAccount(Account account)
+        public UsrCtrlAccount(FormMain formMain, Account account)
         {
             InitializeComponent();
+            this.formMain = formMain;
             this.account = account;
         }
 
@@ -43,6 +45,7 @@ namespace PasswordVault
         private void btnCopyPassword_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(account.Password);
+            ClearClipboard();
         }
 
         private async void ClearClipboard()

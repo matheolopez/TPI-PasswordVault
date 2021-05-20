@@ -75,6 +75,8 @@ namespace PasswordVault
             // 
             // pnlAccounts
             // 
+            this.pnlAccounts.AutoScroll = true;
+            this.pnlAccounts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlAccounts.Location = new System.Drawing.Point(22, 90);
             this.pnlAccounts.Name = "pnlAccounts";
             this.pnlAccounts.Size = new System.Drawing.Size(420, 425);

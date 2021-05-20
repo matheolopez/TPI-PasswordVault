@@ -90,13 +90,14 @@ namespace PasswordVault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnModify);
             this.Controls.Add(this.btnCopyPassword);
             this.Controls.Add(this.btnCopyUsername);
             this.Controls.Add(this.lblTitle);
             this.Name = "UsrCtrlAccount";
-            this.Size = new System.Drawing.Size(420, 85);
+            this.Size = new System.Drawing.Size(418, 83);
             this.Load += new System.EventHandler(this.UsrCtrlAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
