@@ -46,7 +46,6 @@ namespace PasswordVault
         public List<int> getIds()
         {
             ids = new List<int>();
-            ids.Add(fkAccount);
             if (his1 != null)
             {
                 ids.Add((int)his1);

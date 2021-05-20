@@ -37,7 +37,6 @@ namespace PasswordVault
                 cnn.Execute("INSERT INTO t_account (accTitle, accLogin, accPassword, accComment) values (@Title, @Login, @Password, @Comment)", account);
                 cnn.Execute("INSERT INTO t_history (fkAccount) values ((SELECT idAccount FROM t_account ORDER BY idAccount DESC LIMIT 1))");
             }
-            // ToDo: Update local accounts list
         }
 
         /// <summary>
@@ -73,7 +72,6 @@ namespace PasswordVault
                 // Move all ids from history
                 cnn.Execute("UPDATE t_history SET his10 = @his9, his9 = @his8, his8 = @his7, his7 = @his6, his6 = @his5, his5 = @his4, his4 = @his3, his3 = @his2, his2 = @his1, his1 = (SELECT idAccount FROM t_account ORDER BY idAccount DESC LIMIT 1) WHERE fkAccount = " + account.ID, history);
             }
-            // ToDo: Update local accounts list
         }
 
         /// <summary>
@@ -87,13 +85,13 @@ namespace PasswordVault
             {
                 var output = cnn.Query<History>("SELECT * FROM t_history WHERE fkAccount = " + account.ID, new DynamicParameters());
                 cnn.Execute("DELETE FROM t_history WHERE fkAccount = @ID", account);
+                cnn.Execute("DELETE FROM t_account WHERE idAccount = " + account.ID);
                 History history = output.ToList()[0];
                 foreach (int id in history.getIds())
                 {
                     cnn.Execute("DELETE FROM t_account WHERE idAccount = " + id);
                 }
             }
-            // ToDo: Update local accounts list
         }
 
         /// <summary>
@@ -104,6 +102,34 @@ namespace PasswordVault
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+        }
+
+        /// <summary>
+        /// Gets all history from an account
+        /// </summary>
+        /// <param name="account">Up to date account</param>
+        /// <returns>List of accounts (history)</returns>
+        public static List<Account> GetHistory(Account account)
+        {
+            // Open an SQLite connection
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                // Get history from account
+                var outputHistory = cnn.Query<History>("SELECT * FROM t_history WHERE fkAccount = " + account.ID, new DynamicParameters());
+                History history = outputHistory.ToList()[0];
+                
+                // Make the select query
+                string selectQuery = "SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last FROM t_account WHERE idAccount in (" + account.ID;
+                foreach (int id in history.getIds())
+                {
+                    selectQuery += ", " + id;
+                }
+                selectQuery += ")";
+
+                // Execute the query
+                var output = cnn.Query<Account>(selectQuery, new DynamicParameters());
+                return output.ToList();
+            }
         }
     }
 }

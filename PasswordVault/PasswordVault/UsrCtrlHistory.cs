@@ -27,6 +27,8 @@ namespace PasswordVault
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            FormView formView = new FormView(account);
+            formView.ShowDialog();
             // ToDo:
         }
     }

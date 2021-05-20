@@ -66,11 +66,12 @@ namespace PasswordVault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lblChangeDate);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lblTitle);
             this.Name = "UsrCtrlHistory";
-            this.Size = new System.Drawing.Size(320, 70);
+            this.Size = new System.Drawing.Size(318, 68);
             this.Load += new System.EventHandler(this.UsrCtrlHistory_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

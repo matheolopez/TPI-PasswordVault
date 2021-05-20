@@ -36,6 +36,7 @@ namespace PasswordVault
             // 
             // pnlHistory
             // 
+            this.pnlHistory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlHistory.Location = new System.Drawing.Point(12, 12);
             this.pnlHistory.Name = "pnlHistory";
             this.pnlHistory.Size = new System.Drawing.Size(320, 461);
