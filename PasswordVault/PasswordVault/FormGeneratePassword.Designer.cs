@@ -29,6 +29,7 @@ namespace PasswordVault
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGeneratePassword));
             this.txtBoxPassword = new System.Windows.Forms.TextBox();
             this.btnCopy = new System.Windows.Forms.Button();
             this.lblLength = new System.Windows.Forms.Label();
@@ -127,6 +128,7 @@ namespace PasswordVault
             this.Controls.Add(this.lblLength);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.txtBoxPassword);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGeneratePassword";
             this.Text = "FormGeneratePassword";
             ((System.ComponentModel.ISupportInitialize)(this.trckBarLength)).EndInit();

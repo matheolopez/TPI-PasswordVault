@@ -12,21 +12,26 @@ namespace PasswordVault
 {
     public partial class FormAdd : Form
     {
+        FormMain formMain;
+        Account account;
+
         public FormAdd(FormMain formMain)
         {
             InitializeComponent();
             this.formMain = formMain;
         }
 
-        FormMain formMain;
-        Account account;
+        private void FormAdd_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private void btnShowPassword_Click(object sender, EventArgs e)
         {
             if (txtBoxPassword.PasswordChar == '*')
             {
                 btnShowPassword.Text = "Hide";
-                txtBoxPassword.PasswordChar = ' ';
+                txtBoxPassword.PasswordChar = '\0';
             }
             else
             {
@@ -40,7 +45,6 @@ namespace PasswordVault
             if (VerifyInputs())
             {
                 account = new Account(txtBoxTitle.Text, txtBoxLogin.Text, txtBoxPassword.Text, txtBoxComment.Text);
-                account = new Account(txtBoxTitle.Text, txtBoxLogin.Text, txtBoxPassword.Text);
                 SQLiteDataAccess.AddAccount(account);
                 formMain.ReloadAccountList(SQLiteDataAccess.LoadAccounts());
                 this.Close();

@@ -29,6 +29,7 @@ namespace PasswordVault
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdd));
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtBoxTitle = new System.Windows.Forms.TextBox();
             this.txtBoxLogin = new System.Windows.Forms.TextBox();
@@ -154,7 +155,7 @@ namespace PasswordVault
             this.AcceptButton = this.btnAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 516);
+            this.ClientSize = new System.Drawing.Size(344, 516);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtBoxComment);
@@ -167,8 +168,10 @@ namespace PasswordVault
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.txtBoxTitle);
             this.Controls.Add(this.lblTitle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAdd";
-            this.Text = "FormAdd";
+            this.Text = "PasswordVault";
+            this.Load += new System.EventHandler(this.FormAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

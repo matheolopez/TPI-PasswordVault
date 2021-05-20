@@ -29,12 +29,14 @@ namespace PasswordVault
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-
+            FormModify formModify = new FormModify(formMain, account);
+            formModify.ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            SQLiteDataAccess.DeleteAccount(account);
+            formMain.ReloadAccountList(SQLiteDataAccess.LoadAccounts());
         }
 
         private void btnCopyUsername_Click(object sender, EventArgs e)

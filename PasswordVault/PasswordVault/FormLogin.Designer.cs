@@ -29,6 +29,7 @@ namespace PasswordVault
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtBoxPassword = new System.Windows.Forms.TextBox();
             this.btnConnection = new System.Windows.Forms.Button();
@@ -71,6 +72,7 @@ namespace PasswordVault
             this.Controls.Add(this.btnConnection);
             this.Controls.Add(this.txtBoxPassword);
             this.Controls.Add(this.lblPassword);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormLogin";
             this.Text = "PasswordVault";
             this.Load += new System.EventHandler(this.FormLogin_Load);
