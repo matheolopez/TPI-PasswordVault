@@ -87,7 +87,7 @@ namespace PasswordVault
         /// <summary>
         /// Verify that no notnull input are left empty
         /// </summary>
-        /// <returns></returns>
+        /// <returns>If it is empty or not</returns>
         private bool VerifyInputs()
         {
             if (txtBoxTitle.Text != null && txtBoxTitle.Text != "")

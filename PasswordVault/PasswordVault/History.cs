@@ -43,6 +43,10 @@ namespace PasswordVault
 
         private List<int> ids;  // property
 
+        /// <summary>
+        /// Gets all ids in history
+        /// </summary>
+        /// <returns></returns>
         public List<int> getIds()
         {
             ids = new List<int>();

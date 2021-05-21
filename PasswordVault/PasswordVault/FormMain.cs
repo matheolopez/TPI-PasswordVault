@@ -39,7 +39,8 @@ namespace PasswordVault
 
         private void btnGeneratePassword_Click(object sender, EventArgs e)
         {
-
+            FormGeneratePassword formGeneratePassword = new FormGeneratePassword();
+            formGeneratePassword.ShowDialog();
         }
 
         public void ReloadAccountList(List<Account> accounts)

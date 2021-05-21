@@ -61,7 +61,7 @@ namespace PasswordVault
             this.Controls.Add(this.pnlHistory);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHistory";
-            this.Text = "FormHistory";
+            this.Text = "PasswordVault";
             this.Load += new System.EventHandler(this.FormHistory_Load);
             this.ResumeLayout(false);
 

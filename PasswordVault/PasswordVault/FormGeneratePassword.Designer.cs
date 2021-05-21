@@ -38,6 +38,7 @@ namespace PasswordVault
             this.chckBoxNumbers = new System.Windows.Forms.CheckBox();
             this.chckBoxSymbols = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnGenerate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trckBarLength)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,21 +72,26 @@ namespace PasswordVault
             // 
             this.txtBoxLength.Location = new System.Drawing.Point(270, 68);
             this.txtBoxLength.Name = "txtBoxLength";
+            this.txtBoxLength.ReadOnly = true;
             this.txtBoxLength.Size = new System.Drawing.Size(36, 20);
             this.txtBoxLength.TabIndex = 3;
-            this.txtBoxLength.TextChanged += new System.EventHandler(this.txtBoxLength_TextChanged);
             // 
             // trckBarLength
             // 
             this.trckBarLength.Location = new System.Drawing.Point(70, 68);
+            this.trckBarLength.Maximum = 30;
+            this.trckBarLength.Minimum = 8;
             this.trckBarLength.Name = "trckBarLength";
             this.trckBarLength.Size = new System.Drawing.Size(194, 45);
             this.trckBarLength.TabIndex = 4;
-            this.trckBarLength.Scroll += new System.EventHandler(this.trckBarLength_Scroll);
+            this.trckBarLength.Value = 20;
+            this.trckBarLength.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trckBarLength_MouseUp);
             // 
             // chckBoxNumbers
             // 
             this.chckBoxNumbers.AutoSize = true;
+            this.chckBoxNumbers.Checked = true;
+            this.chckBoxNumbers.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chckBoxNumbers.Location = new System.Drawing.Point(32, 112);
             this.chckBoxNumbers.Name = "chckBoxNumbers";
             this.chckBoxNumbers.Size = new System.Drawing.Size(68, 17);
@@ -97,6 +103,8 @@ namespace PasswordVault
             // chckBoxSymbols
             // 
             this.chckBoxSymbols.AutoSize = true;
+            this.chckBoxSymbols.Checked = true;
+            this.chckBoxSymbols.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chckBoxSymbols.Location = new System.Drawing.Point(166, 112);
             this.chckBoxSymbols.Name = "chckBoxSymbols";
             this.chckBoxSymbols.Size = new System.Drawing.Size(65, 17);
@@ -107,7 +115,7 @@ namespace PasswordVault
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(101, 152);
+            this.btnCancel.Location = new System.Drawing.Point(162, 154);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(124, 23);
             this.btnCancel.TabIndex = 7;
@@ -115,11 +123,22 @@ namespace PasswordVault
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // btnGenerate
+            // 
+            this.btnGenerate.Location = new System.Drawing.Point(32, 154);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(124, 23);
+            this.btnGenerate.TabIndex = 8;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
             // FormGeneratePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 189);
+            this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.chckBoxSymbols);
             this.Controls.Add(this.chckBoxNumbers);
@@ -130,7 +149,8 @@ namespace PasswordVault
             this.Controls.Add(this.txtBoxPassword);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGeneratePassword";
-            this.Text = "FormGeneratePassword";
+            this.Text = "PasswordVault";
+            this.Load += new System.EventHandler(this.FormGeneratePassword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trckBarLength)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -147,5 +167,6 @@ namespace PasswordVault
         private System.Windows.Forms.CheckBox chckBoxNumbers;
         private System.Windows.Forms.CheckBox chckBoxSymbols;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnGenerate;
     }
 }
