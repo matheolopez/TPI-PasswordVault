@@ -8,6 +8,13 @@ namespace PasswordVault
 {
     public class Account
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="title">Title of the account</param>
+        /// <param name="login">Login of the account</param>
+        /// <param name="password">Password of the account</param>
+        /// <param name="comment">Comment of the account</param>
         public Account(string title, string login, string password, string comment = "")
         {
             Title = title;
@@ -17,6 +24,15 @@ namespace PasswordVault
             Last = 1;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">ID of the account</param>
+        /// <param name="title">Title of the account</param>
+        /// <param name="login">Login of the account</param>
+        /// <param name="password">Password of the account</param>
+        /// <param name="comment">Comment of the account</param>
+        /// <param name="last">Active indicator of the account</param>
         public Account(int id, string title, string login, string password, string comment, int last)
         {
             ID = id;
@@ -27,6 +43,9 @@ namespace PasswordVault
             Last = last;
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Account()
         {
             Last = 1;

@@ -81,7 +81,18 @@ namespace PasswordVault
         /// <param name="e"></param>
         private void txtBoxPassword_TextChanged(object sender, EventArgs e)
         {
-            // ToDo: Evaluate password strength
+            if (CryptClass.EvaluatePassword(txtBoxPassword.Text) == 1)
+            {
+                lblPasswordStrength.Text = "Weak password";
+            }
+            else if (CryptClass.EvaluatePassword(txtBoxPassword.Text) == 2)
+            {
+                lblPasswordStrength.Text = "Medium password";
+            }
+            else if (CryptClass.EvaluatePassword(txtBoxPassword.Text) == 3)
+            {
+                lblPasswordStrength.Text = "Strong password";
+            }
         }
 
         /// <summary>

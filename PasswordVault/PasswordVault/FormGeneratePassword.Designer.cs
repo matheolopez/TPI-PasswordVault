@@ -98,7 +98,7 @@ namespace PasswordVault
             this.chckBoxNumbers.TabIndex = 5;
             this.chckBoxNumbers.Text = "Numbers";
             this.chckBoxNumbers.UseVisualStyleBackColor = true;
-            this.chckBoxNumbers.EnabledChanged += new System.EventHandler(this.chckBoxNumbers_EnabledChanged);
+            this.chckBoxNumbers.CheckedChanged += new System.EventHandler(this.chckBoxNumbers_CheckedChanged);
             // 
             // chckBoxSymbols
             // 
@@ -111,7 +111,7 @@ namespace PasswordVault
             this.chckBoxSymbols.TabIndex = 6;
             this.chckBoxSymbols.Text = "Symbols";
             this.chckBoxSymbols.UseVisualStyleBackColor = true;
-            this.chckBoxSymbols.EnabledChanged += new System.EventHandler(this.chckBoxSymbols_EnabledChanged);
+            this.chckBoxSymbols.CheckedChanged += new System.EventHandler(this.chckBoxSymbols_CheckedChanged);
             // 
             // btnCancel
             // 

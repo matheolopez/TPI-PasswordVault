@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PasswordVault
 {
@@ -46,7 +42,7 @@ namespace PasswordVault
         /// <summary>
         /// Gets all ids in history
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of all ids</returns>
         public List<int> getIds()
         {
             ids = new List<int>();

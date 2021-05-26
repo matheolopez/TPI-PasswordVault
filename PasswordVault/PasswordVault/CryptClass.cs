@@ -2,6 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PasswordVault
 {
@@ -97,6 +98,63 @@ namespace PasswordVault
                 sb.Append(b.ToString("X2"));
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Evaluates the strength of a password
+        /// </summary>
+        /// <param name="password">Password to evaluate</param>
+        /// <returns>
+        ///     0 if the is an error
+        ///     1 if the password is weak
+        ///     2 if the password is medium
+        ///     3 if the password is strong
+        /// </returns>
+        public static int EvaluatePassword(string password)
+        {
+            int points = 0;
+
+            // Lowercase
+            if (Regex.Match(password, @"(?=.*[a-z])").Success)
+            {
+                points++;
+            }
+            // Uppercase
+            if (Regex.Match(password, @"(?=.*[A-Z])").Success)
+            {
+                points++;
+            }
+            // Numbers
+            if (Regex.Match(password, @"(?=.*[0-9])").Success)
+            {
+                points++;
+            }
+            // Symbols
+            if (Regex.Match(password, @"(?=.*[!-/])").Success)
+            {
+                points += 2;
+            }
+            // Length
+            if (Regex.Match(password, @"^.{8,}$").Success)
+            {
+                points += 2;
+            }
+
+            // Return result
+            int result = 0;
+            if (points >= 1 && points <= 3)
+            {
+                result = 1;
+            }
+            else if (points == 4 || points == 5)
+            {
+                result = 2;
+            }
+            else if (points >= 6)
+            {
+                result = 3;
+            }
+            return result;
         }
     }
 }
