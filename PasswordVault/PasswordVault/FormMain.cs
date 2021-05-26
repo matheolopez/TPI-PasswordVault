@@ -31,7 +31,15 @@ namespace PasswordVault
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            // ToDo:
+            accounts.Clear();
+            foreach (Account account in SQLiteDataAccess.LoadAccounts())
+            {
+                if (account.Contains(txtBoxSearch.Text))
+                {
+                    accounts.Add(account);
+                }
+            }// ToDo:
+            ReloadAccountList(accounts);
         }
 
         /// <summary>

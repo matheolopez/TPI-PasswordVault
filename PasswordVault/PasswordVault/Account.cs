@@ -68,5 +68,31 @@ namespace PasswordVault
 
         public int Last  // property
         { get; set; }
+
+        /// <summary>
+        /// Check if one of the properties contains a word
+        /// </summary>
+        /// <param name="search">Word to search</param>
+        /// <returns>If it contains the search word</returns>
+        public bool Contains(string search)
+        {
+            if (Title.ToLower().Contains(search.ToLower()))
+            {
+                return true;
+            }
+            else if (Login.ToLower().Contains(search.ToLower()))
+            {
+                return true;
+            }
+            else if (Password.ToLower().Contains(search.ToLower()))
+            {
+                return true;
+            }
+            else if (Comment.ToLower().Contains(search.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
