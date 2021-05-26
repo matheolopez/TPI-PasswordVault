@@ -18,9 +18,18 @@ namespace PasswordVault
             // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                // ToDo: Decrypt data
                 var output = cnn.Query<Account>("SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last FROM t_account WHERE accLast = 1", new DynamicParameters());
-                return output.ToList();
+                List<Account> result = output.ToList();
+
+                // Decrypt data
+                foreach (Account account in result)
+                {
+                    account.Title = CryptClass.DecryptString(account.Title);
+                    account.Login = CryptClass.DecryptString(account.Login);
+                    account.Password = CryptClass.DecryptString(account.Password);
+                    account.Comment = CryptClass.DecryptString(account.Comment);
+                }
+                return result;
             }
         }
 
@@ -30,10 +39,15 @@ namespace PasswordVault
         /// <param name="account">Account to add in the database</param>
         public static void AddAccount(Account account)
         {
+            // Encrypt data
+            account.Title = CryptClass.EncryptString(account.Title);
+            account.Login = CryptClass.EncryptString(account.Login);
+            account.Password = CryptClass.EncryptString(account.Password);
+            account.Comment = CryptClass.EncryptString(account.Comment);
+
             // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                // ToDo: Encrypt data
                 cnn.Execute("INSERT INTO t_account (accTitle, accLogin, accPassword, accComment) values (@Title, @Login, @Password, @Comment)", account);
                 cnn.Execute("INSERT INTO t_history (fkAccount) values ((SELECT idAccount FROM t_account ORDER BY idAccount DESC LIMIT 1))");
             }
@@ -55,8 +69,13 @@ namespace PasswordVault
                 // INSERT data with old account (last = 0)
                 cnn.Execute("INSERT INTO t_account (accTitle, accLogin, accPassword, accComment, accLast) values (@Title, @Login, @Password, @Comment, 0)", oldAccount);
 
+                // Encrypt data
+                account.Title = CryptClass.EncryptString(account.Title);
+                account.Login = CryptClass.EncryptString(account.Login);
+                account.Password = CryptClass.EncryptString(account.Password);
+                account.Comment = CryptClass.EncryptString(account.Comment);
+
                 // UPDATE data with updated account
-                // ToDo: Encrypt data
                 cnn.Execute("UPDATE t_account SET accTitle = @Title, accLogin = @Login, accPassword = @Password, accComment = @Comment WHERE idAccount = @ID", account);
 
                 // Get history from account
@@ -128,7 +147,17 @@ namespace PasswordVault
 
                 // Execute the query
                 var output = cnn.Query<Account>(selectQuery, new DynamicParameters());
-                return output.ToList();
+                List<Account> result = output.ToList();
+
+                // Decrypt data
+                foreach (Account account1 in result)
+                {
+                    account1.Title = CryptClass.DecryptString(account1.Title);
+                    account1.Login = CryptClass.DecryptString(account1.Login);
+                    account1.Password = CryptClass.DecryptString(account1.Password);
+                    account1.Comment = CryptClass.DecryptString(account1.Comment);
+                }
+                return result;
             }
         }
     }
