@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -18,7 +19,7 @@ namespace PasswordVault
             // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Account>("SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last FROM t_account WHERE accLast = 1", new DynamicParameters());
+                var output = cnn.Query<Account>("SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last, accDate AS Date FROM t_account WHERE accLast = 1", new DynamicParameters());
                 List<Account> result = output.ToList();
 
                 // Decrypt data
@@ -45,10 +46,14 @@ namespace PasswordVault
             account.Password = CryptClass.EncryptString(account.Password);
             account.Comment = CryptClass.EncryptString(account.Comment);
 
+            DateTime localDate = DateTime.Now;
+            account.Date = localDate.ToString("fr-FR");
+            //ToDo:
+
             // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("INSERT INTO t_account (accTitle, accLogin, accPassword, accComment) values (@Title, @Login, @Password, @Comment)", account);
+                cnn.Execute("INSERT INTO t_account (accTitle, accLogin, accPassword, accComment, accDate) values (@Title, @Login, @Password, @Comment, @Date)", account);
                 cnn.Execute("INSERT INTO t_history (fkAccount) values ((SELECT idAccount FROM t_account ORDER BY idAccount DESC LIMIT 1))");
             }
         }

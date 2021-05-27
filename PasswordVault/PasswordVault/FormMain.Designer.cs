@@ -96,6 +96,7 @@ namespace PasswordVault
             this.Controls.Add(this.txtBoxSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PasswordVault";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);

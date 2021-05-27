@@ -69,6 +69,9 @@ namespace PasswordVault
         public int Last  // property
         { get; set; }
 
+        public string Date  // property
+        { get; set; }
+
         /// <summary>
         /// Check if one of the properties contains a word
         /// </summary>

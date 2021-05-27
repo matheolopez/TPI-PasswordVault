@@ -170,6 +170,7 @@ namespace PasswordVault
             this.Controls.Add(this.lblTitle);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PasswordVault";
             this.Load += new System.EventHandler(this.FormAdd_Load);
             this.ResumeLayout(false);

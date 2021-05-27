@@ -149,6 +149,7 @@ namespace PasswordVault
             this.Controls.Add(this.txtBoxPassword);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGeneratePassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PasswordVault";
             this.Load += new System.EventHandler(this.FormGeneratePassword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trckBarLength)).EndInit();

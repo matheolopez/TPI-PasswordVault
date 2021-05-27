@@ -74,6 +74,7 @@ namespace PasswordVault
             this.Controls.Add(this.lblPassword);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PasswordVault";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
