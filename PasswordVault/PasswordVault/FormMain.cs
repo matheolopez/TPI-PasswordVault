@@ -29,12 +29,26 @@ namespace PasswordVault
             ReloadAccountList(accounts);
         }
 
+        /// <summary>
+        /// Searches the word in every account
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            Search();
+        }
+
+        /// <summary>
+        /// Searches the word in every account
+        /// </summary>
+        private void Search()
+        {
             accounts.Clear();
+            string searchWord = CryptClass.RemoveDiacritics(txtBoxSearch.Text);
             foreach (Account account in SQLiteDataAccess.LoadAccounts())
             {
-                if (account.Contains(txtBoxSearch.Text))
+                if (account.Contains(searchWord))
                 {
                     accounts.Add(account);
                 }
@@ -79,6 +93,16 @@ namespace PasswordVault
                 usrCtrlAccount.Location = new Point(0, usrCtrlAccount.Size.Height * numAccounts);
                 numAccounts++;
             }
+        }
+
+        /// <summary>
+        /// Searches the word in every account
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

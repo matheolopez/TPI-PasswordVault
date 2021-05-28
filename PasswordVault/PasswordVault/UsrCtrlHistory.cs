@@ -25,6 +25,7 @@ namespace PasswordVault
         private void UsrCtrlHistory_Load(object sender, EventArgs e)
         {
             lblTitle.Text = account.Title;
+            lblChangeDate.Text = "Change date: " + account.Date;
         }
 
         /// <summary>

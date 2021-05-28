@@ -61,7 +61,7 @@ namespace PasswordVault
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(153, 23);
             this.btnModify.TabIndex = 22;
-            this.btnModify.Text = "Modify";
+            this.btnModify.Text = "Save";
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 

@@ -43,6 +43,7 @@ namespace PasswordVault
             this.txtBoxSearch.Name = "txtBoxSearch";
             this.txtBoxSearch.Size = new System.Drawing.Size(256, 20);
             this.txtBoxSearch.TabIndex = 0;
+            this.txtBoxSearch.TextChanged += new System.EventHandler(this.txtBoxSearch_TextChanged);
             // 
             // btnSearch
             // 

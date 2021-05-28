@@ -39,6 +39,7 @@ namespace PasswordVault
             this.chckBoxSymbols = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnShow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trckBarLength)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@ namespace PasswordVault
             // 
             this.txtBoxPassword.Location = new System.Drawing.Point(23, 31);
             this.txtBoxPassword.Name = "txtBoxPassword";
+            this.txtBoxPassword.PasswordChar = '*';
             this.txtBoxPassword.Size = new System.Drawing.Size(202, 20);
             this.txtBoxPassword.TabIndex = 0;
             // 
@@ -53,7 +55,7 @@ namespace PasswordVault
             // 
             this.btnCopy.Location = new System.Drawing.Point(231, 29);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(75, 23);
+            this.btnCopy.Size = new System.Drawing.Size(41, 23);
             this.btnCopy.TabIndex = 1;
             this.btnCopy.Text = "Copy";
             this.btnCopy.UseVisualStyleBackColor = true;
@@ -70,7 +72,7 @@ namespace PasswordVault
             // 
             // txtBoxLength
             // 
-            this.txtBoxLength.Location = new System.Drawing.Point(270, 68);
+            this.txtBoxLength.Location = new System.Drawing.Point(284, 68);
             this.txtBoxLength.Name = "txtBoxLength";
             this.txtBoxLength.ReadOnly = true;
             this.txtBoxLength.Size = new System.Drawing.Size(36, 20);
@@ -82,7 +84,7 @@ namespace PasswordVault
             this.trckBarLength.Maximum = 30;
             this.trckBarLength.Minimum = 8;
             this.trckBarLength.Name = "trckBarLength";
-            this.trckBarLength.Size = new System.Drawing.Size(194, 45);
+            this.trckBarLength.Size = new System.Drawing.Size(202, 45);
             this.trckBarLength.TabIndex = 4;
             this.trckBarLength.Value = 20;
             this.trckBarLength.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trckBarLength_MouseUp);
@@ -115,9 +117,9 @@ namespace PasswordVault
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(162, 154);
+            this.btnCancel.Location = new System.Drawing.Point(176, 154);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(124, 23);
+            this.btnCancel.Size = new System.Drawing.Size(144, 23);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -127,17 +129,28 @@ namespace PasswordVault
             // 
             this.btnGenerate.Location = new System.Drawing.Point(32, 154);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(124, 23);
+            this.btnGenerate.Size = new System.Drawing.Size(144, 23);
             this.btnGenerate.TabIndex = 8;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
+            // btnShow
+            // 
+            this.btnShow.Location = new System.Drawing.Point(278, 29);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(42, 23);
+            this.btnShow.TabIndex = 9;
+            this.btnShow.Text = "Show";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
             // FormGeneratePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 189);
+            this.ClientSize = new System.Drawing.Size(341, 189);
+            this.Controls.Add(this.btnShow);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.chckBoxSymbols);
@@ -169,5 +182,6 @@ namespace PasswordVault
         private System.Windows.Forms.CheckBox chckBoxSymbols;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Button btnShow;
     }
 }

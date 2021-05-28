@@ -46,9 +46,7 @@ namespace PasswordVault
             account.Password = CryptClass.EncryptString(account.Password);
             account.Comment = CryptClass.EncryptString(account.Comment);
 
-            DateTime localDate = DateTime.Now;
-            account.Date = localDate.ToString("fr-FR");
-            //ToDo:
+            account.Date = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
 
             // Open an SQLite connection
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -68,11 +66,11 @@ namespace PasswordVault
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 // Get old data from account
-                var outputOldAccount = cnn.Query<Account>("SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last FROM t_account WHERE idAccount = " + account.ID, new DynamicParameters());
+                var outputOldAccount = cnn.Query<Account>("SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last, accDate AS Date FROM t_account WHERE idAccount = " + account.ID, new DynamicParameters());
                 Account oldAccount = outputOldAccount.ToList()[0];
 
                 // INSERT data with old account (last = 0)
-                cnn.Execute("INSERT INTO t_account (accTitle, accLogin, accPassword, accComment, accLast) values (@Title, @Login, @Password, @Comment, 0)", oldAccount);
+                cnn.Execute("INSERT INTO t_account (accTitle, accLogin, accPassword, accComment, accLast, accDate) values (@Title, @Login, @Password, @Comment, 0, @Date)", oldAccount);
 
                 // Encrypt data
                 account.Title = CryptClass.EncryptString(account.Title);
@@ -81,7 +79,8 @@ namespace PasswordVault
                 account.Comment = CryptClass.EncryptString(account.Comment);
 
                 // UPDATE data with updated account
-                cnn.Execute("UPDATE t_account SET accTitle = @Title, accLogin = @Login, accPassword = @Password, accComment = @Comment WHERE idAccount = @ID", account);
+                account.Date = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
+                cnn.Execute("UPDATE t_account SET accTitle = @Title, accLogin = @Login, accPassword = @Password, accComment = @Comment, accDate = @Date WHERE idAccount = @ID", account);
 
                 // Get history from account
                 var outputHistory = cnn.Query<History>("SELECT * FROM t_history WHERE fkAccount = " + account.ID, new DynamicParameters());
@@ -143,7 +142,7 @@ namespace PasswordVault
                 History history = outputHistory.ToList()[0];
                 
                 // Make the select query
-                string selectQuery = "SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last FROM t_account WHERE idAccount in (" + account.ID;
+                string selectQuery = "SELECT idAccount AS ID, accTitle AS Title, accLogin AS Login, accPassword AS Password, accComment AS Comment, accLast AS Last, accDate AS Date FROM t_account WHERE idAccount in (" + account.ID;
                 foreach (int id in history.getIds())
                 {
                     selectQuery += ", " + id;

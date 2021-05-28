@@ -88,5 +88,11 @@ namespace PasswordVault
             Task.Delay(15000).Wait();
             Clipboard.Clear();
         }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+            FormModify formModify = new FormModify(formMain, account);
+            formModify.ShowDialog();
+        }
     }
 }

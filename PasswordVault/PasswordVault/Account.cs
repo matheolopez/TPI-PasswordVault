@@ -79,19 +79,19 @@ namespace PasswordVault
         /// <returns>If it contains the search word</returns>
         public bool Contains(string search)
         {
-            if (Title.ToLower().Contains(search.ToLower()))
+            if (CryptClass.RemoveDiacritics(Title).ToLower().Contains(search.ToLower()))
             {
                 return true;
             }
-            else if (Login.ToLower().Contains(search.ToLower()))
+            else if (CryptClass.RemoveDiacritics(Login).ToLower().Contains(search.ToLower()))
             {
                 return true;
             }
-            else if (Password.ToLower().Contains(search.ToLower()))
+            else if (CryptClass.RemoveDiacritics(Password).ToLower().Contains(search.ToLower()))
             {
                 return true;
             }
-            else if (Comment.ToLower().Contains(search.ToLower()))
+            else if (CryptClass.RemoveDiacritics(Comment).ToLower().Contains(search.ToLower()))
             {
                 return true;
             }

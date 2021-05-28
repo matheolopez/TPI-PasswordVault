@@ -160,5 +160,24 @@ namespace PasswordVault
         {
             txtBoxPassword.Text = GeneratePasswordV2();
         }
+
+        /// <summary>
+        /// Shows and hides the password
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            if (txtBoxPassword.PasswordChar == '*')
+            {
+                btnShow.Text = "Hide";
+                txtBoxPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                btnShow.Text = "Show";
+                txtBoxPassword.PasswordChar = '*';
+            }
+        }
     }
 }
