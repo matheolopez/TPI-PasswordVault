@@ -85,6 +85,14 @@ namespace PasswordVault
         public void ReloadAccountList(List<Account> accounts)
         {
             pnlAccounts.Controls.Clear();
+            if (accounts.Count > 5)
+            {
+                pnlAccounts.Width = 437;
+            }
+            else
+            {
+                pnlAccounts.Width = 420;
+            }
             int numAccounts = 0;
             foreach (Account account in accounts)
             {
